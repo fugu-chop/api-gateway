@@ -5,7 +5,7 @@ This is a small project designed to mimic an [API gateway](https://www.nginx.com
 The initial scope of this project is quite small:
 - All requests to the app will be routed to a single endpoint
 - A `yml` file will contain a mapping of recognised routes (likely to be replaced by some sort of database)
-- A single controller will interface with the `yml` file, transform the request and then make that request to https://dummyjson.com/
+- A single controller will interface with the `yml` file, transform the request and then make that request to https://dummyjson.com/, returning a JSON response
 - Where requests are not recognised, a default endpoint will be used
 - Hopefully I'll be able to deploy this to the Cloud
 
