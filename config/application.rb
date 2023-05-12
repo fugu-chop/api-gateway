@@ -12,7 +12,10 @@ module ApiGateway
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
-
+    config.generators.after_generate do |files|
+      parsable_files = files.filter { |file| file.end_with?('.rb') }
+      system("bundle exec rubocop -A --fail-level=E #{parsable_files.shelljoin}", exception: true)
+    end
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
