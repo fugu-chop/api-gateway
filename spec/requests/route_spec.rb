@@ -43,8 +43,8 @@ RSpec.describe 'Routes', type: :request do
 
         json_body = JSON.parse(response.body)
 
-        expect(json_body).to have_key('error')
-        expect(json_body['error']).to eq error_response_message
+        expect(json_body).to have_key('message')
+        expect(json_body['message']).to eq error_response_message
       end
     end
   end

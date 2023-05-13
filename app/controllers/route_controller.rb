@@ -33,7 +33,7 @@ class RouteController < ApplicationController
   end
 
   def unrecognised_endpoint
-    payload = { error: UNRECOGNISED_ENDPOINT_MSG }
+    payload = { message: UNRECOGNISED_ENDPOINT_MSG }
     render json: payload, status: :not_found
   end
 end
