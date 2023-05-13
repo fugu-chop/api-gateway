@@ -3,40 +3,48 @@
 require 'rails_helper'
 
 RSpec.describe 'Routes', type: :request do
-  describe 'GET /' do
-    before do
-      get '/'
-    end
-
-    context 'when the request is valid' do
-      it 'returns a JSON' do
-        expect(response.header['Content-Type']).to include 'application/json'
-      end
-    end
-
-    context 'when there is no path' do
-      it 'returns an empty path' do
-        json_body = JSON.parse(response.body)
-
-        expect(json_body).to have_key('path')
-        expect(json_body['path']).to eq ''
-      end
-    end
-  end
-
   describe 'GET /users' do
     before do
       get "/users/#{path}"
     end
 
-    context 'when there is additional info in the path' do
-      let(:path) { '123/456' }
+    context 'when the endpoint is valid' do
+      let(:path) { '1' }
 
-      it 'captures all subsequent path information in the request body' do
+      it 'makes the correct request' do
+        expect(response.header['Content-Type']).to include 'application/json'
+
         json_body = JSON.parse(response.body)
 
-        expect(json_body).to have_key('path')
-        expect(json_body['path']).to include path
+        expect(json_body).to have_key('id')
+        expect(json_body['id']).to eq 1
+      end
+    end
+  end
+
+  describe 'GET /invalid' do
+    before do
+      get '/invalid'
+    end
+
+    context 'when the endpoint is invalid' do
+      let(:error_response_message) { 'Endpoint not recognised' }
+
+      it 'makes a request to the correct path' do
+        expect(request.original_fullpath).to eq '/invalid'
+      end
+
+      it 'returns a JSON' do
+        expect(response.header['Content-Type']).to include 'application/json'
+      end
+
+      it 'returns an empty path' do
+        expect(response.status).to eq 404
+
+        json_body = JSON.parse(response.body)
+
+        expect(json_body).to have_key('error')
+        expect(json_body['error']).to eq error_response_message
       end
     end
   end
