@@ -11,7 +11,7 @@ RSpec.describe 'Routes', type: :request do
     context 'when the endpoint is valid' do
       let(:path) { '1' }
 
-      it 'makes the correct request' do
+      it 'the response is in the correct shape' do
         expect(response.header['Content-Type']).to include 'application/json'
 
         json_body = JSON.parse(response.body)
@@ -38,7 +38,7 @@ RSpec.describe 'Routes', type: :request do
         expect(response.header['Content-Type']).to include 'application/json'
       end
 
-      it 'returns an empty path' do
+      it 'returns the correct error message' do
         expect(response.status).to eq 404
 
         json_body = JSON.parse(response.body)
