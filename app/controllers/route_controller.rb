@@ -26,6 +26,7 @@ class RouteController < ApplicationController
     redirected_route = routes[service]
 
     return "#{redirected_route}/#{resource.join('/')}" if redirected_route
+
     UNRECOGNISED_ENDPOINT_MSG
   end
 
