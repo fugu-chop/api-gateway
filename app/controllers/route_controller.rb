@@ -25,11 +25,8 @@ class RouteController < ApplicationController
     service, *resource = initial_path.split('/')
     redirected_route = routes[service]
 
-    if redirected_route
-      "#{redirected_route}/#{resource.join('/')}"
-    else
-      UNRECOGNISED_ENDPOINT_MSG
-    end
+    return "#{redirected_route}/#{resource.join('/')}" if redirected_route
+    UNRECOGNISED_ENDPOINT_MSG
   end
 
   def unrecognised_endpoint
