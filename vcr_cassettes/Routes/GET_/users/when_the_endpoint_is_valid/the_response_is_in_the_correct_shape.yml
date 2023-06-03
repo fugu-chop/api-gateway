@@ -1,0 +1,60 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://dummyjson.com/users/1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - dummyjson.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Frame-Options:
+      - SAMEORIGIN
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      X-Download-Options:
+      - noopen
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Ratelimit-Limit:
+      - '120'
+      X-Ratelimit-Remaining:
+      - '119'
+      Date:
+      - Sat, 03 Jun 2023 23:22:54 GMT
+      X-Ratelimit-Reset:
+      - '1685834618'
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"488-KkO0CwIx0p+erMybVcTcaz/0fl4"
+      Vary:
+      - Accept-Encoding
+      Server:
+      - railway
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJpZCI6MSwiZmlyc3ROYW1lIjoiVGVycnkiLCJsYXN0TmFtZSI6Ik1lZGh1cnN0IiwibWFpZGVuTmFtZSI6IlNtaXRoYW0iLCJhZ2UiOjUwLCJnZW5kZXIiOiJtYWxlIiwiZW1haWwiOiJhdHVueTBAc29odS5jb20iLCJwaG9uZSI6Iis2MyA3OTEgNjc1IDg5MTQiLCJ1c2VybmFtZSI6ImF0dW55MCIsInBhc3N3b3JkIjoiOXVRRkYxTGgiLCJiaXJ0aERhdGUiOiIyMDAwLTEyLTI1IiwiaW1hZ2UiOiJodHRwczovL3JvYm9oYXNoLm9yZy9oaWN2ZWxkaWN0YS5wbmciLCJibG9vZEdyb3VwIjoiQeKIkiIsImhlaWdodCI6MTg5LCJ3ZWlnaHQiOjc1LjQsImV5ZUNvbG9yIjoiR3JlZW4iLCJoYWlyIjp7ImNvbG9yIjoiQmxhY2siLCJ0eXBlIjoiU3RyYW5kcyJ9LCJkb21haW4iOiJzbGFzaGRvdC5vcmciLCJpcCI6IjExNy4yOS44Ni4yNTQiLCJhZGRyZXNzIjp7ImFkZHJlc3MiOiIxNzQ1IFQgU3RyZWV0IFNvdXRoZWFzdCIsImNpdHkiOiJXYXNoaW5ndG9uIiwiY29vcmRpbmF0ZXMiOnsibGF0IjozOC44NjcwMzMsImxuZyI6LTc2Ljk3OTIzNX0sInBvc3RhbENvZGUiOiIyMDAyMCIsInN0YXRlIjoiREMifSwibWFjQWRkcmVzcyI6IjEzOjY5OkJBOjU2OkEzOjc0IiwidW5pdmVyc2l0eSI6IkNhcGl0b2wgVW5pdmVyc2l0eSIsImJhbmsiOnsiY2FyZEV4cGlyZSI6IjA2LzIyIiwiY2FyZE51bWJlciI6IjUwMzgwOTU1MjA0MjIwNjg1IiwiY2FyZFR5cGUiOiJtYWVzdHJvIiwiY3VycmVuY3kiOiJQZXNvIiwiaWJhbiI6Ik5PMTcgMDY5NSAyNzU0IDk2NyJ9LCJjb21wYW55Ijp7ImFkZHJlc3MiOnsiYWRkcmVzcyI6IjYyOSBEZWJiaWUgRHJpdmUiLCJjaXR5IjoiTmFzaHZpbGxlIiwiY29vcmRpbmF0ZXMiOnsibGF0IjozNi4yMDgxMTQsImxuZyI6LTg2LjU4NjIxMTk5OTk5OTk5fSwicG9zdGFsQ29kZSI6IjM3MDc2Iiwic3RhdGUiOiJUTiJ9LCJkZXBhcnRtZW50IjoiTWFya2V0aW5nIiwibmFtZSI6IkJsYW5kYS1PJ0tlZWZlIiwidGl0bGUiOiJIZWxwIERlc2sgT3BlcmF0b3IifSwiZWluIjoiMjAtOTQ4NzA2NiIsInNzbiI6IjY2MS02NC0yOTc2IiwidXNlckFnZW50IjoiTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgNi4xKSBBcHBsZVdlYktpdC81MzQuMjQgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvMTIuMC43MDIuMCBTYWZhcmkvNTM0LjI0In0=
+  recorded_at: Sat, 03 Jun 2023 23:22:54 GMT
+recorded_with: VCR 6.1.0
