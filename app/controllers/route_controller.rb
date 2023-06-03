@@ -16,12 +16,16 @@ class RouteController < ApplicationController
 
   private
 
+  def loaded_routes
+    @loaded_routes ||= YAML.safe_load(File.open(ROUTE_TABLE_LOCATION))
+  end
+
   def initial_path
     params[:path] || ''
   end
 
   def parsed_path
-    routes = YAML.safe_load(File.open(ROUTE_TABLE_LOCATION))
+    routes = loaded_routes
     service, *resource = initial_path.split('/')
     redirected_route = routes[service]
 
