@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Routes', type: :request do
-  describe 'GET /users' do
+  describe 'GET /users', :vcr do
     before do
       get "/users/#{path}"
     end
@@ -36,7 +36,7 @@ RSpec.describe 'Routes', type: :request do
     end
   end
 
-  describe 'GET /invalid' do
+  describe 'GET /invalid', :vcr do
     before do
       get '/invalid'
     end
