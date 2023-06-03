@@ -20,6 +20,20 @@ RSpec.describe 'Routes', type: :request do
         expect(json_body['id']).to eq 1
       end
     end
+
+    context 'when there is a custom override' do
+      let(:path) { '666' }
+
+      it 'makes a request to the product endpoint' do
+        expect(response.header['Content-Type']).to include 'application/json'
+
+        json_body = JSON.parse(response.body)
+
+        expect(json_body).not_to have_key('firstName')
+        expect(json_body).to have_key('brand')
+        expect(json_body['id']).to eq 1
+      end
+    end
   end
 
   describe 'GET /invalid' do
