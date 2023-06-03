@@ -2,11 +2,8 @@
 
 class RouteController < ApplicationController
   ROUTE_TABLE_LOCATION = "#{Rails.root}/config/gateway_routes.yml".freeze
+  OVERRIDE_TABLE_LOCATION = "#{Rails.root}/config/override_routes.yml".freeze
   UNRECOGNISED_ENDPOINT_MSG = 'Endpoint not recognised'
-  CUSTOM_PATHS = {
-    'users/666' => 'products/1',
-    'users/667' => 'products/2'
-  }.freeze
 
   def index
     return unrecognised_endpoint if parsed_path == UNRECOGNISED_ENDPOINT_MSG
@@ -20,6 +17,10 @@ class RouteController < ApplicationController
 
   private
 
+  def custom_override_routes
+    @custom_override_routes ||= YAML.safe_load(File.open(OVERRIDE_TABLE_LOCATION))
+  end
+
   def loaded_routes
     @loaded_routes ||= YAML.safe_load(File.open(ROUTE_TABLE_LOCATION))
   end
@@ -31,7 +32,7 @@ class RouteController < ApplicationController
   def parsed_path
     path_to_parse = initial_path
 
-    path_to_parse = find_custom_route(initial_path) if custom_route_exists?(initial_path)
+    path_to_parse = find_custom_route(initial_path) if custom_route_exists?(custom_override_routes, initial_path)
 
     create_uri(loaded_routes, path_to_parse)
   end
@@ -44,12 +45,12 @@ class RouteController < ApplicationController
     UNRECOGNISED_ENDPOINT_MSG
   end
 
-  def custom_route_exists?(path)
-    !!CUSTOM_PATHS[path]
+  def custom_route_exists?(_override_routes, path)
+    !!custom_override_routes[path]
   end
 
   def find_custom_route(path)
-    CUSTOM_PATHS[path] || path
+    custom_override_routes[path] || path
   end
 
   def unrecognised_endpoint
