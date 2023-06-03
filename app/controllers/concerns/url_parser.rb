@@ -16,6 +16,11 @@ module UrlParser
       create_uri(loaded_routes, path_to_parse)
     end
 
+    # I'm not sure about how `ActiveSupport::Concern` treats
+    # private methods - these seem to be directly callable
+    # in the controller, regardless of whether I put `private`
+    # or not, or whether I leave them outside of the `included`
+    # block.
     private
 
     def custom_override_routes
