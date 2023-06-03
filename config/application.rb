@@ -10,6 +10,8 @@ Bundler.require(*Rails.groups)
 
 module ApiGateway
   class Application < Rails::Application
+    # Run in lighterweight api mode
+    config.api_only = true
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
     config.generators.after_generate do |files|
