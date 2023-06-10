@@ -1,14 +1,16 @@
 # frozen_string_literal: true
 
 module UrlParser
-  extend ActiveSupport::Concern
+  ROUTE_TABLE_LOCATION = "#{Rails.root}/config/gateway_routes.yml".freeze
+  OVERRIDE_TABLE_LOCATION = "#{Rails.root}/config/override_routes.yml".freeze
+  UNRECOGNISED_ENDPOINT_MSG = 'Endpoint not recognised'
 
-  included do
-    ROUTE_TABLE_LOCATION = "#{Rails.root}/config/gateway_routes.yml".freeze
-    OVERRIDE_TABLE_LOCATION = "#{Rails.root}/config/override_routes.yml".freeze
-    UNRECOGNISED_ENDPOINT_MSG = 'Endpoint not recognised'
+  class UrlRouter
+    def initialize(path)
+      @initial_path = path
+    end
 
-    def parsed_path(initial_path)
+    def parsed_path
       path_to_parse = initial_path
 
       path_to_parse = find_custom_route(initial_path) if custom_route_exists?(custom_override_routes, initial_path)
@@ -16,12 +18,10 @@ module UrlParser
       create_uri(loaded_routes, path_to_parse)
     end
 
-    # I'm not sure about how `ActiveSupport::Concern` treats
-    # private methods - these seem to be directly callable
-    # in the controller, regardless of whether I put `private`
-    # or not, or whether I leave them outside of the `included`
-    # block.
     private
+    def initial_path
+      @initial_path
+    end
 
     def custom_override_routes
       @custom_override_routes ||= YAML.safe_load(File.open(OVERRIDE_TABLE_LOCATION))
@@ -46,5 +46,10 @@ module UrlParser
     def find_custom_route(path)
       custom_override_routes[path] || path
     end
+  end
+
+  def self.parse_path(initial_path)
+    router = UrlRouter.new(initial_path)
+    router.parsed_path
   end
 end

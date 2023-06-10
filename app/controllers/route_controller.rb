@@ -4,7 +4,7 @@ class RouteController < ApplicationController
   include UrlParser
 
   def index
-    path = parsed_path(initial_path)
+    path = UrlParser.parse_path(initial_path)
     return unrecognised_endpoint if path == UNRECOGNISED_ENDPOINT_MSG
 
     uri = URI(path)
