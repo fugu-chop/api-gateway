@@ -19,9 +19,8 @@ module UrlParser
     end
 
     private
-    def initial_path
-      @initial_path
-    end
+
+    attr_reader :initial_path
 
     def custom_override_routes
       @custom_override_routes ||= YAML.safe_load(File.open(OVERRIDE_TABLE_LOCATION))
