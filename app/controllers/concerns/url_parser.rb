@@ -6,11 +6,7 @@ module UrlParser
   UNRECOGNISED_ENDPOINT_MSG = 'Endpoint not recognised'
 
   class UrlRouter
-    def initialize(path)
-      @initial_path = path
-    end
-
-    def parsed_path
+    def parsed_path(initial_path)
       path_to_parse = initial_path
 
       path_to_parse = find_custom_route(initial_path) if custom_route_exists?(custom_override_routes, initial_path)
@@ -19,8 +15,6 @@ module UrlParser
     end
 
     private
-
-    attr_reader :initial_path
 
     def custom_override_routes
       @custom_override_routes ||= YAML.safe_load(File.open(OVERRIDE_TABLE_LOCATION))
@@ -48,7 +42,7 @@ module UrlParser
   end
 
   def self.parse_path(initial_path)
-    router = UrlRouter.new(initial_path)
-    router.parsed_path
+    router = UrlRouter.new
+    router.parsed_path(initial_path)
   end
 end
