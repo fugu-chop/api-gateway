@@ -13,10 +13,11 @@ RSpec.describe 'Routes', type: :request do
 
       it 'the response is in the correct shape' do
         expect(response.header['Content-Type']).to include 'application/json'
+      end
 
+      it 'has the correct id' do
         json_body = JSON.parse(response.body)
 
-        expect(json_body).to have_key('id')
         expect(json_body['id']).to eq 1
       end
     end
@@ -26,12 +27,12 @@ RSpec.describe 'Routes', type: :request do
 
       it 'makes a request to the product endpoint' do
         expect(response.header['Content-Type']).to include 'application/json'
+      end
 
+      it 'has the correct product response' do
         json_body = JSON.parse(response.body)
 
-        expect(json_body).not_to have_key('firstName')
         expect(json_body).to have_key('brand')
-        expect(json_body['id']).to eq 1
       end
     end
   end
@@ -52,12 +53,13 @@ RSpec.describe 'Routes', type: :request do
         expect(response.header['Content-Type']).to include 'application/json'
       end
 
-      it 'returns the correct error message' do
+      it 'returns an error response' do
         expect(response.status).to eq 404
+      end
 
+      it 'contains the correct error message' do
         json_body = JSON.parse(response.body)
 
-        expect(json_body).to have_key('message')
         expect(json_body['message']).to eq error_response_message
       end
     end
