@@ -11,11 +11,11 @@ RSpec.describe 'Routes', type: :request do
     context 'when the endpoint is valid' do
       let(:path) { '1' }
 
-      it 'the response is in the correct shape' do
+      it 'has the correct shape' do
         expect(response.header['Content-Type']).to include 'application/json'
       end
 
-      it 'has the correct id' do
+      it 'has the correct response id' do
         json_body = JSON.parse(response.body)
 
         expect(json_body['id']).to eq 1
