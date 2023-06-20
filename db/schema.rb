@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_20_122018) do
+ActiveRecord::Schema.define(version: 2023_06_20_125459) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "api_routes", force: :cascade do |t|
+  create_table "routes", force: :cascade do |t|
     t.string "path"
     t.string "route"
     t.datetime "created_at", precision: 6, null: false
