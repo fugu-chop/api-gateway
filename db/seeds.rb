@@ -6,6 +6,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Route.delete_all
 routes_location = "#{Rails.root}/config/gateway_routes.yml".freeze
 routes_hash = YAML.safe_load(File.open(routes_location))
 routes_hash.each do |path, route|
