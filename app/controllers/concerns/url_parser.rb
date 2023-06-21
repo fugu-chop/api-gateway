@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module UrlParser
-  ROUTE_TABLE_LOCATION = "#{Rails.root}/config/gateway_routes.yml".freeze
+  # ROUTE_TABLE_LOCATION = "#{Rails.root}/config/gateway_routes.yml".freeze
   OVERRIDE_TABLE_LOCATION = "#{Rails.root}/config/override_routes.yml".freeze
   UNRECOGNISED_ENDPOINT_MSG = 'Endpoint not recognised'
 
@@ -21,7 +21,9 @@ module UrlParser
     end
 
     def loaded_routes
-      @loaded_routes ||= YAML.safe_load(File.open(ROUTE_TABLE_LOCATION))
+      @loaded_routes ||= Route.all.each_with_object({}) do |route, hash| 
+        hash[route.path] = route.route
+      end
     end
 
     def create_uri(routes, path)

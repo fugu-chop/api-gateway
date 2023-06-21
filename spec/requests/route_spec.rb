@@ -4,6 +4,10 @@ require 'rails_helper'
 
 RSpec.describe 'Routes', type: :request do
   describe 'GET /users', :vcr do
+    before(:all) do
+      Rails.application.load_seed
+    end
+
     before do
       get "/users/#{path}"
     end
